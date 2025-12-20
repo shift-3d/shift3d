@@ -644,67 +644,216 @@ your <style> block:
 
     <div class="container">
         
-        <!-- FEATURED ROW (scrollable) -->
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHIFT 3D | Manufacturing Lab</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --brand:#74A098;
+    --bg:#080808;
+    --card:#111;
+    --text:#fff;
+    --sub:#888;
+    --border:#333;
+}
+
+body{
+    margin:0;
+    font-family:'Outfit',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* ===== HEADER FOR FEATURED ===== */
+.section-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+h1{
+    font-weight:300;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:1.5rem;
+    border-left:4px solid var(--brand);
+    padding-left:15px;
+}
+
+.scroll-arrow{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--sub);
+    font-size:1.4rem;
+    cursor:pointer;
+    transition:all .25s ease;
+}
+
+.scroll-arrow:hover{
+    color:var(--brand);
+    border-color:var(--brand);
+    transform:translateX(4px);
+}
+
+/* ===== GRID ===== */
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:40px;
+}
+
+.grid{
+    display:flex;
+    gap:30px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+}
+
+.grid::-webkit-scrollbar{height:6px}
+.grid::-webkit-scrollbar-thumb{background:var(--border)}
+
+.card{
+    flex:0 0 320px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    text-decoration:none;
+    color:var(--text);
+    scroll-snap-align:start;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:var(--brand);
+}
+
+.card-img{
+    height:280px;
+    background:#222;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#555;
+}
+
+.card-info{padding:25px}
+
+.card h3{margin:0 0 6px}
+.card p{margin:0;color:var(--sub)}
+
+.action-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:20px;
+    border-top:1px solid var(--border);
+    padding-top:15px;
+}
+
+.price{font-weight:700}
+
+.btn{
+    border:1px solid var(--brand);
+    color:var(--brand);
+    padding:6px 12px;
+    font-size:.75rem;
+    text-transform:uppercase;
+    border-radius:4px;
+}
+
+.btn:hover{
+    background:var(--brand);
+    color:#000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- FEATURED PRODUCTS -->
+    <div class="section-header">
         <h1>Featured Products</h1>
-        <div class="grid">
-            <a href="viewer.html?id=benchy" class="card" data-product-id="benchy" data-product-name="3D Benchy" data-product-price="15.00">
-                <img src="benchy.png" class="card-img" alt="3D Benchy">
-                <div class="card-info">
-                    <h3>3D Benchy</h3>
-                    <p>Calibration & Benchmark Test</p>
-                    <div class="action-row">
-                        <span class="price">$15.00</span>
-                        <div class="card-actions">
-                            <span class="btn view-btn">View in 3D</span>
-                            <span class="btn add-to-cart-btn">Add to Cart</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
+        <button class="scroll-arrow" id="featured-arrow">→</button>
+    </div>
 
-            <a href="viewer.html?id=hand" class="card" data-product-id="hand" data-product-name="Wall Hand" data-product-price="45.00">
-                <img src="hand.png" class="card-img" alt="Wall Hand">
-                <div class="card-info">
-                    <h3>Wall Hand</h3>
-                    <p>Functional Wall Decor</p>
-                    <div class="action-row">
-                        <span class="price">$45.00</span>
-                        <div class="card-actions">
-                            <span class="btn view-btn">View in 3D</span>
-                            <span class="btn add-to-cart-btn">Add to Cart</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
+    <div class="grid" id="featured-grid">
 
-            <a href="viewer.html?id=tower" class="card" data-product-id="tower" data-product-name="Dice Tower V3" data-product-price="25.00">
-                 <div class="card-img" style="background: #222; display:flex; align-items:center; justify-content:center; color:#555;">IMG</div>
-                <div class="card-info">
-                    <h3>Dice Tower V3</h3>
-                    <p>Tabletop Gaming Accessory</p>
-                    <div class="action-row">
-                        <span class="price">$25.00</span>
-                        <div class="card-actions">
-                            <span class="btn view-btn">View in 3D</span>
-                            <span class="btn add-to-cart-btn">Add to Cart</span>
-                        </div>
-                    </div>
+        <a class="card">
+            <div class="card-img">IMG</div>
+            <div class="card-info">
+                <h3>3D Benchy</h3>
+                <p>Calibration Benchmark</p>
+                <div class="action-row">
+                    <span class="price">$15</span>
+                    <span class="btn">View</span>
                 </div>
-            </a>
+            </div>
+        </a>
 
-            <div class="card" style="opacity: 0.5; cursor: default;">
-                <div class="card-img" style="display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #555;">?</div>
-                <div class="card-info">
-                    <h3>Incoming Data</h3>
-                    <p>New models arriving...</p>
-                    <div class="action-row">
-                        <span class="price">--</span>
-                        <span class="btn" style="border-color: #555; color: #555;">Locked</span>
-                    </div>
+        <a class="card">
+            <div class="card-img">IMG</div>
+            <div class="card-info">
+                <h3>Wall Hand</h3>
+                <p>Functional Decor</p>
+                <div class="action-row">
+                    <span class="price">$45</span>
+                    <span class="btn">View</span>
+                </div>
+            </div>
+        </a>
+
+        <a class="card">
+            <div class="card-img">IMG</div>
+            <div class="card-info">
+                <h3>Dice Tower</h3>
+                <p>Tabletop Gaming</p>
+                <div class="action-row">
+                    <span class="price">$25</span>
+                    <span class="btn">View</span>
+                </div>
+            </div>
+        </a>
+
+        <div class="card" style="opacity:.5">
+            <div class="card-img">?</div>
+            <div class="card-info">
+                <h3>Incoming Data</h3>
+                <p>New models arriving</p>
+                <div class="action-row">
+                    <span class="price">--</span>
+                    <span class="btn">Locked</span>
                 </div>
             </div>
         </div>
 
+    </div>
+</div>
+
+<script>
+document.getElementById('featured-arrow').addEventListener('click',()=>{
+    document.getElementById('featured-grid').scrollBy({
+        left:350,
+        behavior:'smooth'
+    });
+});
+</script>
+
+</body>
+</html>
         <!-- GAMING & HOBBIES ROW -->
         <h2 class="section-heading">Gaming & Hobbies</h2>
         <div class="grid">
