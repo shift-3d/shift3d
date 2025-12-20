@@ -1194,6 +1194,32 @@ your <style> block:
 
         updateCartUI();
     </script>
+<div id="splash-screen" style="position: fixed; inset: 0; z-index: 9999; background: #080808; display: flex; align-items: center; justify-content: center;">
+    <video id="intro-video" autoplay muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+        <source src="intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
 
+<script>
+    const video = document.getElementById('intro-video');
+    const splash = document.getElementById('splash-screen');
+
+    // This tells the website: "When the video ends, hide the splash screen"
+    video.onended = function() {
+        splash.style.transition = 'opacity 0.8s ease';
+        splash.style.opacity = '0';
+        setTimeout(() => {
+            splash.style.display = 'none';
+        }, 800); // This makes it fade out smoothly
+    };
+
+    // Backup: If the video fails to load or takes too long, 
+    // hide the splash screen after 5 seconds so users aren't stuck.
+    setTimeout(() => {
+        splash.style.display = 'none';
+    }, 5000); 
+</script>
 </body>
 </html>
+
