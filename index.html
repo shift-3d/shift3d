@@ -1194,6 +1194,37 @@ your <style> block:
 
         updateCartUI();
     </script>
+<script>
+    const video = document.getElementById('intro-video');
+    const splash = document.getElementById('splash-screen');
 
+    // 1. Check if the user has already seen the video in this session
+    if (sessionStorage.getItem('splashPlayed')) {
+        // If they have, hide the splash screen immediately with no delay
+        splash.style.display = 'none';
+    } else {
+        // 2. If they haven't seen it, wait for the video to end
+        video.onended = function() {
+            hideSplash();
+        };
+
+        // Backup: Hide after 5 seconds if video fails
+        setTimeout(() => {
+            hideSplash();
+        }, 5000);
+    }
+
+    function hideSplash() {
+        // Write the "sticky note" so it doesn't play again
+        sessionStorage.setItem('splashPlayed', 'true');
+        
+        splash.style.transition = 'opacity 0.8s ease';
+        splash.style.opacity = '0';
+        setTimeout(() => {
+            splash.style.display = 'none';
+        }, 800);
+    }
+</script>
 </body>
 </html>
+
