@@ -1224,38 +1224,46 @@ your <style> block:
 
         updateCartUI();
     </script>
-<script>
-    const video = document.getElementById('intro-video');
-    const splash = document.getElementById('splash-screen');
+<div id="splash-screen" style="position: fixed; inset: 0; z-index: 9999; background: #080808; display: flex; align-items: center; justify-content: center;">
+        <button onclick="hideSplash()" style="position: absolute; bottom: 30px; right: 30px; z-index: 10000; background: rgba(255,255,255,0.1); color: white; border: 1px solid white; padding: 10px 20px; cursor: pointer; font-family: 'Outfit', sans-serif; border-radius: 4px;">
+            SKIP INTRO
+        </button>
+        <video id="intro-video" autoplay muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="intro.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
-    // 1. Check if the user has already seen the video in this session
-    if (sessionStorage.getItem('splashPlayed')) {
-        // If they have, hide the splash screen immediately with no delay
-        splash.style.display = 'none';
-    } else {
-        // 2. If they haven't seen it, wait for the video to end
-        video.onended = function() {
-            hideSplash();
-        };
+    <script>
+        const video = document.getElementById('intro-video');
+        const splash = document.getElementById('splash-screen');
 
-        // Backup: Hide after 5 seconds if video fails
-        setTimeout(() => {
-            hideSplash();
-        }, 5000);
-    }
-
-    function hideSplash() {
-        // Write the "sticky note" so it doesn't play again
-        sessionStorage.setItem('splashPlayed', 'true');
-        
-        splash.style.transition = 'opacity 0.8s ease';
-        splash.style.opacity = '0';
-        setTimeout(() => {
+        // Check if the user has already seen it this session
+        if (sessionStorage.getItem('splashPlayed')) {
             splash.style.display = 'none';
-        }, 800);
-    }
-</script>
+        } else {
+            // Play video and wait for it to end
+            video.onended = function() {
+                hideSplash();
+            };
+
+            // Backup: Hide after 5 seconds if video fails to load
+            setTimeout(() => {
+                if(splash.style.display !== 'none') hideSplash();
+            }, 10000);
+        }
+
+        function hideSplash() {
+            sessionStorage.setItem('splashPlayed', 'true');
+            splash.style.transition = 'opacity 0.8s ease';
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
+
 
 
