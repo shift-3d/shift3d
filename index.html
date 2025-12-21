@@ -584,17 +584,32 @@ your <style> block:
 
     /* Scale entire UI on smaller screens */
 @media (max-width: 768px) {
-    body {
-        transform: scale(0.85);
-        transform-origin: top center;
-    }
-}
 
-/* Even smaller screens (mobile portrait) */
-@media (max-width: 480px) {
-    body {
-        transform: scale(0.75);
-        transform-origin: top center;
+    nav {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 16px;
+        row-gap: 14px;
+    }
+
+    .logo-wrapper {
+        justify-content: center;
+    }
+
+    .search-wrapper {
+        padding-left: 0;
+        justify-content: center;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .nav-right {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
     }
 }
     </style>
@@ -1234,6 +1249,7 @@ your <style> block:
 </script>
 </body>
 </html>
+
 
 
 
